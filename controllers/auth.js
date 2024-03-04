@@ -3,14 +3,17 @@ const User = require('../models/User');
 exports.register=async (req,res,next)=>{
     // res.status(200).json({success:true});
     try{
-        const {name, email, password, role}=req.body;
-
+        console.log(req.body) ;
+        const {name, tel , email, password, role}=req.body;
+        console.log(req.body) ;
         const user = await User.create({
             name,
+            tel,
             email,
             password,
             role
         });
+        console.log(user.name) ;
         // Create token
         //const token = user.getSignedJwtToken();
         //res.status(200).json({success:true,token});
@@ -18,7 +21,7 @@ exports.register=async (req,res,next)=>{
 
     }
     catch(err){
-        res.status(400).json({success:false});
+        res.status(400).json({success:false , message : "wrong path"});
         console.log(err.stack);
     }
 };
